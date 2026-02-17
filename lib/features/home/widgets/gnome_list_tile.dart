@@ -21,7 +21,7 @@ class GnomeListTile extends StatelessWidget {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: CachedNetworkImage(
-            Uri.encodeFull(gnome.thumbnail),
+            imageUrl: Uri.encodeFull(gnome.thumbnail),
             width: 56,
             height: 56,
             fit: BoxFit.cover,
