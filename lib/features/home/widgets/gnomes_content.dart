@@ -27,7 +27,7 @@ class GnomesContent extends StatelessWidget {
         return GnomesListView(items: items, onRefresh: onRefresh);
       },
       loading: GnomesLoadingView.new,
-      error: (_, __) => GnomesErrorView(onRetry: onRetry),
+      error: (error, _) => GnomesErrorView(error: error, onRetry: onRetry),
     );
   }
 }

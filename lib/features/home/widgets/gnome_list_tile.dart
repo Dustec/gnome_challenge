@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gnome_challenge/features/gnomes/domain/model/gnome.dart';
 
@@ -19,20 +20,13 @@ class GnomeListTile extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.network(
+          child: CachedNetworkImage(
             Uri.encodeFull(gnome.thumbnail),
             width: 56,
             height: 56,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) {
-              return Container(
-                width: 56,
-                height: 56,
-                color: Colors.black12,
-                alignment: Alignment.center,
-                child: const Icon(Icons.shield),
-              );
-            },
+            placeholder: (_, __) => const _GnomeImagePlaceholder(),
+            errorWidget: (_, __, ___) => const _GnomeImageFallback(),
           ),
         ),
         title: Text(gnome.name, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -46,6 +40,40 @@ class GnomeListTile extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _GnomeImagePlaceholder extends StatelessWidget {
+  const _GnomeImagePlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 56,
+      height: 56,
+      color: Colors.black12,
+      alignment: Alignment.center,
+      child: const SizedBox(
+        width: 18,
+        height: 18,
+        child: CircularProgressIndicator(strokeWidth: 2),
+      ),
+    );
+  }
+}
+
+class _GnomeImageFallback extends StatelessWidget {
+  const _GnomeImageFallback();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 56,
+      height: 56,
+      color: Colors.black12,
+      alignment: Alignment.center,
+      child: const Icon(Icons.shield),
     );
   }
 }
