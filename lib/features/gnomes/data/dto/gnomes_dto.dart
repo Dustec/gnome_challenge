@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'gnomes_dataset_dto.g.dart';
+part 'gnomes_dto.g.dart';
 
 @JsonSerializable()
 class GnomesDatasetDto {

@@ -4,9 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnome_challenge/core/config/app_env.dart';
 import 'package:gnome_challenge/core/network/domain/network_client.dart';
 import 'package:gnome_challenge/core/network/infrastructure/dio_network_client.dart';
+import 'package:gnome_challenge/core/network/infrastructure/lenient_json_transformer.dart';
 
 final baseUrlProvider = Provider<String>((ref) {
-  return AppEnv.gnomesDataUrl;
+  return Uri.parse(AppEnv.gnomesDataUrl).origin;
 });
 
 final dioProvider = Provider<Dio>((ref) {
@@ -20,6 +21,7 @@ final dioProvider = Provider<Dio>((ref) {
       responseType: ResponseType.json,
     ),
   );
+  dio.transformer = LenientJsonTransformer();
 
   if (kDebugMode) {
     dio.interceptors.add(

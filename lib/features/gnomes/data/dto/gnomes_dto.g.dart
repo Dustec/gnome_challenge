@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'gnomes_dataset_dto.dart';
+part of 'gnomes_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -1,11 +1,9 @@
-import 'package:gnome_challenge/features/gnomes/data/dto/gnomes_dataset_dto.dart';
+import 'package:gnome_challenge/features/gnomes/data/dto/gnomes_dto.dart';
 import 'package:gnome_challenge/features/gnomes/domain/model/gnome.dart';
 
-extension GnomesDatasetDtoMapper on GnomesDatasetDto {
+extension GnomeListDtoMapper on List<GnomeDto> {
   List<Gnome> toDomain() {
-    return (gnomes ?? const <GnomeDto>[])
-        .map((dto) => dto.toDomain())
-        .toList(growable: false);
+    return map((dto) => dto.toDomain()).toList(growable: false);
   }
 }
 

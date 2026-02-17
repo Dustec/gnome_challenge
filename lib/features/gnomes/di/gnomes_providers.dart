@@ -10,18 +10,19 @@ final gnomesDataUrlProvider = Provider<String>((ref) {
   return AppEnv.gnomesDataUrl;
 });
 
+final gnomesApiBaseUrlProvider = Provider<String>((ref) {
+  return Uri.parse(ref.watch(gnomesDataUrlProvider)).origin;
+});
+
 final gnomesApiProvider = Provider<GnomesApi>((ref) {
   return GnomesApi(
     ref.watch(dioProvider),
-    baseUrl: ref.watch(gnomesDataUrlProvider),
+    baseUrl: ref.watch(gnomesApiBaseUrlProvider),
   );
 });
 
 final gnomesNetworkFacadeProvider = Provider<GnomesNetworkFacade>((ref) {
-  return GnomesNetworkFacade(
-    retrofitApi: ref.watch(gnomesApiProvider),
-    networkClient: ref.watch(networkClientProvider),
-  );
+  return GnomesNetworkFacade(retrofitApi: ref.watch(gnomesApiProvider));
 });
 
 final gnomesRepositoryProvider = Provider<GnomesRepository>((ref) {

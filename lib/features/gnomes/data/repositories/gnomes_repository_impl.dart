@@ -9,8 +9,7 @@ class GnomesRepositoryImpl implements GnomesRepository {
   final GnomesNetworkFacade _networkFacade;
 
   @override
-  Future<List<Gnome>> fetchGnomes() async {
-    final dataset = await _networkFacade.getGnomesDatasetWithRetrofit();
-    return dataset.toDomain();
+  Future<List<Gnome>> fetchGnomes() {
+    return _networkFacade.getGnomesDataset().then((value) => value.toDomain());
   }
 }

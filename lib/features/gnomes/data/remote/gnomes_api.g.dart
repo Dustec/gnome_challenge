@@ -27,7 +27,7 @@ class _GnomesApi implements GnomesApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '',
+            '/rrafols/mobile_test/master/data.json',
             queryParameters: queryParameters,
             data: _data,
           )
