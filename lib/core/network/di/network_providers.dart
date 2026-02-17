@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gnome_challenge/core/config/app_env.dart';
 import 'package:gnome_challenge/core/network/domain/network_client.dart';
 import 'package:gnome_challenge/core/network/infrastructure/dio_network_client.dart';
 
 final baseUrlProvider = Provider<String>((ref) {
-  return 'https://api.example.com';
+  return AppEnv.gnomesDataUrl;
 });
 
 final dioProvider = Provider<Dio>((ref) {
