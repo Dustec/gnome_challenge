@@ -4,9 +4,7 @@ part 'gnomes_dataset_dto.g.dart';
 
 @JsonSerializable()
 class GnomesDatasetDto {
-  const GnomesDatasetDto({
-    this.gnomes,
-  });
+  const GnomesDatasetDto({this.gnomes});
 
   factory GnomesDatasetDto.fromJson(Map<String, dynamic> json) {
     return _$GnomesDatasetDtoFromJson(json);
